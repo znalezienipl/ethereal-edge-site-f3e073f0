@@ -1,29 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSalonConfig } from "@/config/useSalonConfig";
+import { Hero } from "@/components/salon/sections/Hero";
+import { About } from "@/components/salon/sections/About";
+import { RitualsShowcase } from "@/components/salon/sections/RitualsShowcase";
+import { Gallery } from "@/components/salon/sections/Gallery";
+import { Experience } from "@/components/salon/sections/Experience";
+import { Reviews } from "@/components/salon/sections/Reviews";
+import { Location } from "@/components/salon/sections/Location";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Lekkość · Beauty Center Kraków" },
+      {
+        name: "description",
+        content:
+          "Kameralny gabinet kosmetologii w Krakowie. Pielęgnacja twarzy, stylizacja brwi i rzęs, makijaż permanentny.",
+      },
+      { property: "og:title", content: "Lekkość · Beauty Center Kraków" },
+      {
+        property: "og:description",
+        content: "Kameralny gabinet kosmetologii. Cisza, precyzja, rytuał.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pl_PL" },
     ],
   }),
-  component: Index,
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
+  const config = useSalonConfig();
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Hero hero={config.hero} bookingPath="/rezerwacja" />
+      <About about={config.about} />
+      <RitualsShowcase services={config.services} servicesPath="/uslugi" />
+      <Gallery images={config.gallery} />
+      <Experience experience={config.experience} />
+      <Reviews reviews={config.reviews} />
+      <Location location={config.location} />
+    </>
   );
 }
