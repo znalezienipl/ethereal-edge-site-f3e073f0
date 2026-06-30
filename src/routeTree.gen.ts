@@ -9,8 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UslugiRouteImport } from './routes/uslugi'
+import { Route as RezerwacjaRouteImport } from './routes/rezerwacja'
+import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UslugiRoute = UslugiRouteImport.update({
+  id: '/uslugi',
+  path: '/uslugi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RezerwacjaRoute = RezerwacjaRouteImport.update({
+  id: '/rezerwacja',
+  path: '/rezerwacja',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +37,61 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/rezerwacja': typeof RezerwacjaRoute
+  '/uslugi': typeof UslugiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/rezerwacja': typeof RezerwacjaRoute
+  '/uslugi': typeof UslugiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/rezerwacja': typeof RezerwacjaRoute
+  '/uslugi': typeof UslugiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/kontakt' | '/rezerwacja' | '/uslugi'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/kontakt' | '/rezerwacja' | '/uslugi'
+  id: '__root__' | '/' | '/kontakt' | '/rezerwacja' | '/uslugi'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KontaktRoute: typeof KontaktRoute
+  RezerwacjaRoute: typeof RezerwacjaRoute
+  UslugiRoute: typeof UslugiRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/uslugi': {
+      id: '/uslugi'
+      path: '/uslugi'
+      fullPath: '/uslugi'
+      preLoaderRoute: typeof UslugiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rezerwacja': {
+      id: '/rezerwacja'
+      path: '/rezerwacja'
+      fullPath: '/rezerwacja'
+      preLoaderRoute: typeof RezerwacjaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KontaktRoute: KontaktRoute,
+  RezerwacjaRoute: RezerwacjaRoute,
+  UslugiRoute: UslugiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
