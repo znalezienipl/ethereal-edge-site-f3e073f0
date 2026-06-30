@@ -1,0 +1,112 @@
+export const pl = {
+  nav: {
+    home: "Salon",
+    services: "Rytuały",
+    gallery: "Galeria",
+    contact: "Kontakt",
+    book: "Umów wizytę",
+  },
+  cta: {
+    book: "Umów wizytę",
+    viewServices: "Zobacz rytuały",
+    directions: "Wskazówki dojazdu",
+    instagram: "Instagram",
+  },
+  sections: {
+    about: { eyebrow: "O Salonie" },
+    rituals: { eyebrow: "Rytuały", headline: "Zabiegi przemyślane do końca." },
+    gallery: { eyebrow: "Galeria" },
+    experience: { eyebrow: "Doświadczenie", headline: "Cztery zasady, którymi się kierujemy." },
+    reviews: { eyebrow: "Opinie" },
+    location: { eyebrow: "Lokalizacja" },
+  },
+  services: {
+    categories: {
+      twarz: "Twarz",
+      "brwi-rzesy": "Brwi i rzęsy",
+      "makijaz-permanentny": "Makijaż permanentny",
+      pielegnacja: "Pielęgnacja",
+    },
+    firstVisit: "pierwsza wizyta",
+    duration: (min: number) => `${min} min`,
+    free: "Bezpłatnie",
+    price: (zl: number) => `${zl} zł`,
+  },
+  location: {
+    hoursLabel: "Godziny otwarcia",
+    addressLabel: "Adres",
+    parkingLabel: "Dojazd",
+  },
+  booking: {
+    title: "Rezerwacja",
+    stepOf: (a: number, b: number) => `${a} z ${b}`,
+    steps: {
+      service: "Usługa",
+      specialist: "Specjalistka",
+      date: "Data",
+      time: "Godzina",
+      details: "Twoje dane",
+    },
+    back: "Wstecz",
+    next: "Dalej",
+    submit: "Potwierdź rezerwację",
+    submitting: "Wysyłanie…",
+    placeholders: {
+      name: "Imię i nazwisko",
+      phone: "+48 600 000 000",
+      email: "twój@email.pl",
+      notes: "Dodatkowe informacje (opcjonalnie)",
+    },
+    labels: {
+      name: "Imię i nazwisko",
+      phone: "Telefon",
+      email: "Email",
+      notes: "Wiadomość",
+      rodo: "Wyrażam zgodę na przetwarzanie danych osobowych w celu realizacji rezerwacji.",
+    },
+    errors: {
+      required: "Pole wymagane",
+      name: "Wpisz imię i nazwisko",
+      phone: "Wpisz poprawny numer telefonu",
+      email: "Wpisz poprawny adres email",
+      rodo: "Zgoda jest wymagana",
+      service: "Wybierz usługę",
+      specialist: "Wybierz specjalistkę",
+      date: "Wybierz datę",
+      time: "Wybierz godzinę",
+    },
+    confirmation: {
+      eyebrow: "Dziękujemy",
+      headline: "Rezerwacja przyjęta.",
+      body: "Potwierdzenie wysłaliśmy na podany adres email. Do zobaczenia w salonie.",
+      back: "Wróć na stronę główną",
+    },
+    summary: {
+      title: "Twoja wizyta",
+      service: "Zabieg",
+      specialist: "Specjalistka",
+      date: "Data",
+      time: "Godzina",
+    },
+  },
+  contact: {
+    headline: "Najlepiej napisz lub zadzwoń.",
+    phoneLabel: "Telefon",
+    emailLabel: "Email",
+    instagramLabel: "Instagram",
+  },
+  footer: {
+    rightsPrefix: "©",
+    rightsSuffix: "Wszystkie prawa zastrzeżone.",
+    columns: {
+      visit: "Wizyta",
+      salon: "Salon",
+      contact: "Kontakt",
+    },
+  },
+  imagePlaceholder: "Zdjęcie wkrótce",
+  reviewsMeta: (booksy: string, google?: string) =>
+    google ? `Booksy ${booksy} · Google ${google}` : `Booksy ${booksy}`,
+} as const;
+
+export type Dictionary = typeof pl;
